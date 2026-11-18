@@ -1,0 +1,136 @@
+/* ====================================================================
+   RESPONSIVE DESIGN ADAPTATIONS
+   Mobile, Tablet, Desktop & Touch Optimizations
+   ==================================================================== */
+
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 868px) {
+  .mobile-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: rgba(18, 16, 14, 0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border-bright);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 16px;
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition-normal);
+    z-index: 999;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1.05rem;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .nav-menu .mobile-admin-btn {
+    display: flex;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .viewer-wrapper {
+    height: 440px;
+  }
+
+  .viewer-toolbar-bottom {
+    bottom: 12px;
+    padding: 6px 12px;
+    gap: 6px;
+    max-width: 92%;
+    overflow-x: auto;
+  }
+
+  .toolbar-btn span {
+    display: none;
+  }
+
+  .toolbar-btn {
+    padding: 8px;
+  }
+
+  .mode-pill-group {
+    display: none;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-container {
+    height: 70px;
+  }
+
+  .brand-text h1 {
+    font-size: 1.05rem;
+  }
+
+  .brand-text p {
+    font-size: 0.65rem;
+  }
+
+  .viewer-wrapper {
+    height: 380px;
+  }
+
+  .viewer-hud-top {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .viewer-hud-badge {
+    padding: 6px 10px;
+  }
+
+  .viewer-hud-title {
+    font-size: 0.85rem;
+  }
+}
+

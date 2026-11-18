@@ -1,0 +1,363 @@
+/* ====================================================================
+   3D VIEWER STYLES & INTERACTIVE TOOLBARS
+   Google <model-viewer> & Three.js Canvas Fallback
+   ==================================================================== */
+
+.viewer-wrapper {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: radial-gradient(circle at 50% 40%, #2a2018 0%, #171310 65%, #0f0d0b 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg), inset 0 0 80px rgba(0, 0, 0, 0.8);
+}
+
+.viewer-wrapper.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  border-radius: 0;
+  border: none;
+}
+
+/* Model Viewer native element */
+model-viewer {
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  outline: none;
+}
+
+/* Three.js fallback canvas container */
+#three-canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+#three-canvas-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+}
+
+/* 3D Loading Progress */
+.viewer-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 16, 14, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 10;
+  transition: opacity 0.4s ease;
+}
+
+.viewer-loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(212, 175, 55, 0.2);
+  border-top-color: var(--color-gold-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.viewer-loading-text {
+  font-family: var(--font-serif);
+  color: var(--color-gold-light);
+  font-size: 1.1rem;
+}
+
+.viewer-loading-bar {
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.viewer-loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-gold-primary), #fff);
+  transition: width 0.2s ease;
+}
+
+/* Floating Top HUD Bar */
+.viewer-hud-top {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.viewer-hud-badge {
+  pointer-events: auto;
+  background: rgba(18, 16, 14, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: var(--shadow-md);
+}
+
+.viewer-hud-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+}
+
+.viewer-hud-meta {
+  font-size: 0.75rem;
+  color: var(--color-bronze);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewer-hud-tools {
+  pointer-events: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.hud-btn {
+  background: rgba(18, 16, 14, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-gold-light);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.hud-btn:hover {
+  background: var(--color-gold-primary);
+  color: #12100e;
+  border-color: var(--color-gold-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.hud-btn.active {
+  background: var(--color-gold-primary);
+  color: #12100e;
+  border-color: var(--color-gold-primary);
+}
+
+/* Floating Bottom Controls Toolbar */
+.viewer-toolbar-bottom {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(18, 16, 14, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-bright);
+  border-radius: var(--radius-full);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-lg), var(--shadow-gold);
+  z-index: 20;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--color-border-subtle);
+}
+
+.toolbar-btn {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid transparent;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.toolbar-btn:hover {
+  color: var(--color-gold-light);
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.toolbar-btn.active {
+  background: var(--color-gold-primary);
+  color: #12100e;
+  border-color: var(--color-gold-primary);
+}
+
+/* View Mode Selector Dropdown / Menu */
+.mode-pill-group {
+  display: flex;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.mode-pill {
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mode-pill:hover {
+  color: var(--color-gold-light);
+}
+
+.mode-pill.active {
+  background: var(--color-gold-primary);
+  color: #12100e;
+}
+
+/* Archaeological Hotspot Pins */
+.view-hotspot {
+  background: var(--color-gold-primary);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 0 0 0 6px rgba(212, 175, 55, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  animation: pulse-pin 2s infinite;
+}
+
+.view-hotspot:hover {
+  transform: scale(1.25);
+  background: #ffffff;
+}
+
+@keyframes pulse-pin {
+  0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+/* Hotspot Annotation Modal Popover */
+.hotspot-annotation {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(22, 18, 15, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-gold-primary);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  width: 280px;
+  box-shadow: var(--shadow-lg);
+  pointer-events: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 30;
+}
+
+.view-hotspot:hover .hotspot-annotation,
+.view-hotspot:focus .hotspot-annotation,
+.hotspot-annotation.visible {
+  opacity: 1;
+  visibility: visible;
+  bottom: 36px;
+}
+
+.hotspot-annotation-title {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--color-gold-light);
+  margin-bottom: 4px;
+}
+
+.hotspot-annotation-desc {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* Quick Gesture Hints */
+.viewer-gesture-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(18, 16, 14, 0.75);
+  border: 1px solid var(--color-border-subtle);
+  backdrop-filter: blur(6px);
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  color: var(--color-gold-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeInOut 3s forwards;
+  z-index: 15;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -40%); }
+  20% { opacity: 1; transform: translate(-50%, -50%); }
+  80% { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -60%); pointer-events: none; }
+}
+

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+      <rect width="400" height="300" fill="#1b1612" rx="8" />
+      <rect x="10" y="10" width="380" height="280" fill="none" stroke="#c5a059" stroke-width="1" stroke-opacity="0.3" rx="6" />
+      <circle cx="200" cy="120" r="60" fill="#2d221a" stroke="#d4af37" stroke-width="1.5" />
+      <text x="200" y="128" font-size="32" text-anchor="middle">📷</text>
+      <text x="200" y="215" fill="#f5e6c8" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui">Cận Cảnh Chi Tiết (Macro)</text>
+      <text x="200" y="240" fill="#a89a8a" font-size="11" text-anchor="middle" font-family="system-ui">Ảnh vi chụp chất liệu cổ và vết rỗ thời gian</text>
+      <text x="200" y="265" fill="#d4af37" font-size="10" text-anchor="middle" font-family="system-ui">Bộ ảnh phục vụ ghép nối đám mây điểm 3D</text>
+    </svg>

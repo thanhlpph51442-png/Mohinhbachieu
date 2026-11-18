@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 460" width="100%" height="100%">
+  <defs>
+    <linearGradient id="lightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14110e" />
+      <stop offset="100%" stop-color="#241a13" />
+    </linearGradient>
+  </defs>
+
+  <rect width="850" height="460" fill="url(#lightGrad)" rx="16" />
+  <rect x="10" y="10" width="830" height="440" fill="none" stroke="#c5a059" stroke-width="1" stroke-opacity="0.3" rx="12" />
+
+  <text x="425" y="45" fill="#e6c687" font-size="20" font-weight="700" text-anchor="middle" font-family="'Cinzel', serif, system-ui">
+    THIẾT LẬP ÁNH SÁNG VÀ PHÒNG CHỤP PHOTOGRAMMETRY
+  </text>
+  <text x="425" y="70" fill="#a89a8a" font-size="13" text-anchor="middle" font-family="system-ui">
+    Ánh sáng khuếch tán đều (diffuse light) - Triệt tiêu đổ bóng gắt và phản quang chói lóa
+  </text>
+
+  <!-- Setup Diagram -->
+  <g transform="translate(50, 100)">
+    <!-- Seamless Backdrop Studio -->
+    <path d="M 50 20 L 350 20 L 350 280 L 50 280 Z" fill="#1b1612" stroke="#483a30" stroke-width="2" />
+    <path d="M 50 220 Q 50 260 90 260 L 350 260" fill="none" stroke="#685647" stroke-width="2" stroke-dasharray="4,4" />
+    <text x="200" y="45" fill="#a89a8a" font-size="12" text-anchor="middle" font-family="system-ui">Phông nền đơn sắc mờ (Backdrop)</text>
+
+    <!-- Turntable (Bàn xoay) -->
+    <ellipse cx="200" cy="220" rx="90" ry="25" fill="#2d221a" stroke="#d4af37" stroke-width="2" />
+    <text x="200" y="225" fill="#e6c687" font-size="12" font-weight="700" text-anchor="middle" font-family="system-ui">Bàn Xoay Tự Động (Turntable)</text>
+
+    <!-- Artifact on Turntable -->
+    <rect x="175" y="140" width="50" height="70" fill="#604934" stroke="#e6c687" stroke-width="1.5" rx="4" />
+    <text x="200" y="180" fill="#fff" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">HIỆN VẬT</text>
+
+    <!-- Left Softbox Light -->
+    <g transform="translate(20, 80)">
+      <polygon points="0,0 40,20 40,80 0,60" fill="#d4af37" fill-opacity="0.25" stroke="#f59e0b" stroke-width="1.5" />
+      <text x="-5" y="35" fill="#f59e0b" font-size="11" font-weight="700" text-anchor="end" font-family="system-ui">Softbox Trái</text>
+      <!-- Light rays -->
+      <line x1="40" y1="50" x2="160" y2="160" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" />
+    </g>
+
+    <!-- Right Softbox Light -->
+    <g transform="translate(340, 80)">
+      <polygon points="40,0 0,20 0,80 40,60" fill="#d4af37" fill-opacity="0.25" stroke="#f59e0b" stroke-width="1.5" />
+      <text x="45" y="35" fill="#f59e0b" font-size="11" font-weight="700" text-anchor="start" font-family="system-ui">Softbox Phải</text>
+      <!-- Light rays -->
+      <line x1="0" y1="50" x2="-100" y2="160" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" />
+    </g>
+
+    <!-- Tripod & Camera Front -->
+    <g transform="translate(200, 310)">
+      <!-- Camera -->
+      <rect x="-20" y="-30" width="40" height="24" fill="#2d221a" stroke="#4ade80" stroke-width="2" rx="3" />
+      <circle cx="0" cy="-18" r="8" fill="#111" stroke="#4ade80" stroke-width="1.5" />
+      <!-- Tripod legs -->
+      <line x1="0" y1="-6" x2="-30" y2="35" stroke="#a89a8a" stroke-width="2" />
+      <line x1="0" y1="-6" x2="30" y2="35" stroke="#a89a8a" stroke-width="2" />
+      <line x1="0" y1="-6" x2="0" y2="35" stroke="#a89a8a" stroke-width="2" />
+      <text x="0" y="55" fill="#4ade80" font-size="11" font-weight="700" text-anchor="middle" font-family="system-ui">Chân máy cố định (Tripod)</text>
+    </g>
+  </g>
+
+  <!-- Right: Technical parameters card -->
+  <g transform="translate(480, 100)">
+    <rect width="320" height="310" fill="#1e1814" stroke="#c5a059" stroke-width="1.5" rx="8" />
+    <text x="20" y="32" fill="#e6c687" font-size="15" font-weight="700" font-family="system-ui">Thông Số Máy Ảnh Khuyến Nghị</text>
+
+    
+      <g transform="translate(18, 60)">
+        <circle cx="6" cy="6" r="3" fill="#d4af37" />
+        <text x="18" y="9" fill="#f5e6c8" font-size="12" font-weight="600" font-family="system-ui">Chế độ chụp:</text>
+        <text x="18" y="24" fill="#a89a8a" font-size="11" font-family="system-ui">Manual (M) - Khóa thông số cố định</text>
+      </g>
+    
+      <g transform="translate(18, 94)">
+        <circle cx="6" cy="6" r="3" fill="#d4af37" />
+        <text x="18" y="9" fill="#f5e6c8" font-size="12" font-weight="600" font-family="system-ui">Khẩu độ (Aperture):</text>
+        <text x="18" y="24" fill="#a89a8a" font-size="11" font-family="system-ui">f/8 – f/11 (Độ sâu trường DOF nét sâu)</text>
+      </g>
+    
+      <g transform="translate(18, 128)">
+        <circle cx="6" cy="6" r="3" fill="#d4af37" />
+        <text x="18" y="9" fill="#f5e6c8" font-size="12" font-weight="600" font-family="system-ui">Độ nhạy ISO:</text>
+        <text x="18" y="24" fill="#a89a8a" font-size="11" font-family="system-ui">ISO 100 – 200 (Giảm nhiễu hạt tối đa)</text>
+      </g>
+    
+      <g transform="translate(18, 162)">
+        <circle cx="6" cy="6" r="3" fill="#d4af37" />
+        <text x="18" y="9" fill="#f5e6c8" font-size="12" font-weight="600" font-family="system-ui">Tốc độ màn trập:</text>
+        <text x="18" y="24" fill="#a89a8a" font-size="11" font-family="system-ui">1/30s – 1/125s (Dùng chân máy & remote)</text>
+      </g>
+    
+      <g transform="translate(18, 196)">
+        <circle cx="6" cy="6" r="3" fill="#d4af37" />
+        <text x="18" y="9" fill="#f5e6c8" font-size="12" font-weight="600" font-family="system-ui">Tiêu cự (Focal Length):</text>
+        <text x="18" y="24" fill="#a89a8a" font-size="11" font-family="system-ui">50mm – 85mm Prime (Tránh méo hình)</text>
+      </g>
+    
+      <g transform="translate(18, 230)">
+        <circle cx="6" cy="6" r="3" fill="#d4af37" />
+        <text x="18" y="9" fill="#f5e6c8" font-size="12" font-weight="600" font-family="system-ui">Cân bằng trắng:</text>
+        <text x="18" y="24" fill="#a89a8a" font-size="11" font-family="system-ui">Cố định theo nhiệt độ đèn (5500K)</text>
+      </g>
+    
+      <g transform="translate(18, 264)">
+        <circle cx="6" cy="6" r="3" fill="#d4af37" />
+        <text x="18" y="9" fill="#f5e6c8" font-size="12" font-weight="600" font-family="system-ui">Định dạng tệp:</text>
+        <text x="18" y="24" fill="#a89a8a" font-size="11" font-family="system-ui">RAW / JPEG Fine chất lượng cao nhất</text>
+      </g>
+    
+  </g>
+</svg>

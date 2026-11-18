@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pipeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#15120f" />
+      <stop offset="100%" stop-color="#241a14" />
+    </linearGradient>
+    <linearGradient id="stepGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#32241b" />
+      <stop offset="100%" stop-color="#201712" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="480" fill="url(#pipeBg)" rx="16" />
+  <rect x="10" y="10" width="1080" height="460" fill="none" stroke="#c5a059" stroke-width="1" stroke-opacity="0.3" rx="12" />
+
+  <!-- Title -->
+  <text x="550" y="50" fill="#e6c687" font-size="22" font-weight="700" text-anchor="middle" font-family="'Cinzel', serif, system-ui">
+    QUY TRÌNH 7 BƯỚC TÁI TẠO MÔ HÌNH 3D HIỆN VẬT TỪ ẢNH CHỤP
+  </text>
+  <text x="550" y="78" fill="#a89a8a" font-size="13" text-anchor="middle" font-family="system-ui">
+    Công nghệ Photogrammetry kết hợp WebGL số hóa di sản bảo tàng
+  </text>
+
+  <!-- Flow Steps -->
+  
+      <g transform="translate(50, 110)">
+        <!-- Card -->
+        <rect width="235" height="140" fill="url(#stepGrad)" stroke="#c5a059" stroke-width="1.2" rx="10" />
+        
+        <!-- Step Badge -->
+        <circle cx="28" cy="28" r="16" fill="#d4af37" />
+        <text x="28" y="33" fill="#17120e" font-size="13" font-weight="800" text-anchor="middle" font-family="system-ui">1</text>
+
+        <!-- Icon -->
+        <text x="200" y="36" font-size="22" text-anchor="middle">🏛️</text>
+
+        <!-- Title -->
+        <text x="20" y="72" fill="#f5e6c8" font-size="14" font-weight="700" font-family="system-ui">Chuẩn Bị Hiện Vật</text>
+        
+        <!-- Subtitle -->
+        <foreignObject x="20" y="80" width="195" height="52">
+          <p xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #b8a695; margin: 0; line-height: 1.4; font-family: system-ui;">
+            Ánh sáng khuếch tán, bàn xoay, phông mờ
+          </p>
+        </foreignObject>
+
+        <!-- Connector Arrow -->
+        
+          <g transform="translate(235, 70)">
+            <line x1="0" y1="0" x2="16" y2="0" stroke="#d4af37" stroke-width="2" />
+            <polygon points="16,-4 22,0 16,4" fill="#d4af37" />
+          </g>
+        
+      </g>
+    
+      <g transform="translate(305, 110)">
+        <!-- Card -->
+        <rect width="235" height="140" fill="url(#stepGrad)" stroke="#c5a059" stroke-width="1.2" rx="10" />
+        
+        <!-- Step Badge -->
+        <circle cx="28" cy="28" r="16" fill="#d4af37" />
+        <text x="28" y="33" fill="#17120e" font-size="13" font-weight="800" text-anchor="middle" font-family="system-ui">2</text>
+
+        <!-- Icon -->
+        <text x="200" y="36" font-size="22" text-anchor="middle">📸</text>
+
+        <!-- Title -->
+        <text x="20" y="72" fill="#f5e6c8" font-size="14" font-weight="700" font-family="system-ui">Chụp Ảnh 360°</text>
+        
+        <!-- Subtitle -->
+        <foreignObject x="20" y="80" width="195" height="52">
+          <p xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #b8a695; margin: 0; line-height: 1.4; font-family: system-ui;">
+            60-120 ảnh, độ chồng lấp 60-80%
+          </p>
+        </foreignObject>
+
+        <!-- Connector Arrow -->
+        
+          <g transform="translate(235, 70)">
+            <line x1="0" y1="0" x2="16" y2="0" stroke="#d4af37" stroke-width="2" />
+            <polygon points="16,-4 22,0 16,4" fill="#d4af37" />
+          </g>
+        
+      </g>
+    
+      <g transform="translate(560, 110)">
+        <!-- Card -->
+        <rect width="235" height="140" fill="url(#stepGrad)" stroke="#c5a059" stroke-width="1.2" rx="10" />
+        
+        <!-- Step Badge -->
+        <circle cx="28" cy="28" r="16" fill="#d4af37" />
+        <text x="28" y="33" fill="#17120e" font-size="13" font-weight="800" text-anchor="middle" font-family="system-ui">3</text>
+
+        <!-- Icon -->
+        <text x="200" y="36" font-size="22" text-anchor="middle">💻</text>
+
+        <!-- Title -->
+        <text x="20" y="72" fill="#f5e6c8" font-size="14" font-weight="700" font-family="system-ui">Căn Chỉnh Ảnh (SfM)</text>
+        
+        <!-- Subtitle -->
+        <foreignObject x="20" y="80" width="195" height="52">
+          <p xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #b8a695; margin: 0; line-height: 1.4; font-family: system-ui;">
+            Phần mềm dò tìm điểm đặc trưng tương đồng
+          </p>
+        </foreignObject>
+
+        <!-- Connector Arrow -->
+        
+          <g transform="translate(235, 70)">
+            <line x1="0" y1="0" x2="16" y2="0" stroke="#d4af37" stroke-width="2" />
+            <polygon points="16,-4 22,0 16,4" fill="#d4af37" />
+          </g>
+        
+      </g>
+    
+      <g transform="translate(815, 110)">
+        <!-- Card -->
+        <rect width="235" height="140" fill="url(#stepGrad)" stroke="#c5a059" stroke-width="1.2" rx="10" />
+        
+        <!-- Step Badge -->
+        <circle cx="28" cy="28" r="16" fill="#d4af37" />
+        <text x="28" y="33" fill="#17120e" font-size="13" font-weight="800" text-anchor="middle" font-family="system-ui">4</text>
+
+        <!-- Icon -->
+        <text x="200" y="36" font-size="22" text-anchor="middle">✨</text>
+
+        <!-- Title -->
+        <text x="20" y="72" fill="#f5e6c8" font-size="14" font-weight="700" font-family="system-ui">Tạo Mây Điểm & Lưới</text>
+        
+        <!-- Subtitle -->
+        <foreignObject x="20" y="80" width="195" height="52">
+          <p xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #b8a695; margin: 0; line-height: 1.4; font-family: system-ui;">
+            Dense Point Cloud & Mesh Reconstruction
+          </p>
+        </foreignObject>
+
+        <!-- Connector Arrow -->
+        
+      </g>
+    
+      <g transform="translate(50, 285)">
+        <!-- Card -->
+        <rect width="235" height="140" fill="url(#stepGrad)" stroke="#c5a059" stroke-width="1.2" rx="10" />
+        
+        <!-- Step Badge -->
+        <circle cx="28" cy="28" r="16" fill="#d4af37" />
+        <text x="28" y="33" fill="#17120e" font-size="13" font-weight="800" text-anchor="middle" font-family="system-ui">5</text>
+
+        <!-- Icon -->
+        <text x="200" y="36" font-size="22" text-anchor="middle">🎨</text>
+
+        <!-- Title -->
+        <text x="20" y="72" fill="#f5e6c8" font-size="14" font-weight="700" font-family="system-ui">Ánh Xạ Kết Cấu</text>
+        
+        <!-- Subtitle -->
+        <foreignObject x="20" y="80" width="195" height="52">
+          <p xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #b8a695; margin: 0; line-height: 1.4; font-family: system-ui;">
+            UV Unwrapping & Texture 4K từ ảnh gốc
+          </p>
+        </foreignObject>
+
+        <!-- Connector Arrow -->
+        
+          <g transform="translate(235, 70)">
+            <line x1="0" y1="0" x2="16" y2="0" stroke="#d4af37" stroke-width="2" />
+            <polygon points="16,-4 22,0 16,4" fill="#d4af37" />
+          </g>
+        
+      </g>
+    
+      <g transform="translate(305, 285)">
+        <!-- Card -->
+        <rect width="235" height="140" fill="url(#stepGrad)" stroke="#c5a059" stroke-width="1.2" rx="10" />
+        
+        <!-- Step Badge -->
+        <circle cx="28" cy="28" r="16" fill="#d4af37" />
+        <text x="28" y="33" fill="#17120e" font-size="13" font-weight="800" text-anchor="middle" font-family="system-ui">6</text>
+
+        <!-- Icon -->
+        <text x="200" y="36" font-size="22" text-anchor="middle">📦</text>
+
+        <!-- Title -->
+        <text x="20" y="72" fill="#f5e6c8" font-size="14" font-weight="700" font-family="system-ui">Xuất File GLB/GLTF</text>
+        
+        <!-- Subtitle -->
+        <foreignObject x="20" y="80" width="195" height="52">
+          <p xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #b8a695; margin: 0; line-height: 1.4; font-family: system-ui;">
+            Decimate tối ưu đa giác, nén Draco
+          </p>
+        </foreignObject>
+
+        <!-- Connector Arrow -->
+        
+          <g transform="translate(235, 70)">
+            <line x1="0" y1="0" x2="16" y2="0" stroke="#d4af37" stroke-width="2" />
+            <polygon points="16,-4 22,0 16,4" fill="#d4af37" />
+          </g>
+        
+      </g>
+    
+      <g transform="translate(560, 285)">
+        <!-- Card -->
+        <rect width="235" height="140" fill="url(#stepGrad)" stroke="#c5a059" stroke-width="1.2" rx="10" />
+        
+        <!-- Step Badge -->
+        <circle cx="28" cy="28" r="16" fill="#d4af37" />
+        <text x="28" y="33" fill="#17120e" font-size="13" font-weight="800" text-anchor="middle" font-family="system-ui">7</text>
+
+        <!-- Icon -->
+        <text x="200" y="36" font-size="22" text-anchor="middle">🌐</text>
+
+        <!-- Title -->
+        <text x="20" y="72" fill="#f5e6c8" font-size="14" font-weight="700" font-family="system-ui">Trưng Bày Web 3D</text>
+        
+        <!-- Subtitle -->
+        <foreignObject x="20" y="80" width="195" height="52">
+          <p xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; color: #b8a695; margin: 0; line-height: 1.4; font-family: system-ui;">
+            Tương tác 360°, xoay, zoom, đo kích thước
+          </p>
+        </foreignObject>
+
+        <!-- Connector Arrow -->
+        
+      </g>
+    
+</svg>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảo Tàng Số 3D | Dựng Mô Hình Hiện Vật Lịch Sử Từ Ảnh</title>
+  <meta name="description" content="Nền tảng bảo tàng số trưng bày và tái tạo mô hình 3D các hiện vật lịch sử văn hóa Việt Nam từ ảnh chụp thực tế bằng công nghệ Photogrammetry.">
+  
+  <!-- Google Fonts & Model Viewer WebComponent -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/viewer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    /* Hero section custom styling */
+    .hero-section {
+      padding: 60px 0 90px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .hero-title {
+      font-size: 3.2rem;
+      letter-spacing: -0.5px;
+      line-height: 1.18;
+      margin-bottom: 24px;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .hero-metrics {
+      display: flex;
+      gap: 32px;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+    .metric-item h4 {
+      font-size: 1.8rem;
+      color: var(--color-gold-light);
+      font-family: var(--font-serif);
+      margin-bottom: 4px;
+    }
+    .metric-item p {
+      font-size: 0.82rem;
+      color: var(--color-bronze);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+    .hero-3d-card {
+      position: relative;
+      background: radial-gradient(circle at 50% 50%, #291f17 0%, #171310 80%);
+      border: 1px solid var(--color-border-bright);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg), var(--shadow-gold);
+      height: 480px;
+    }
+    .hero-card-tag {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 5;
+    }
+    .hero-card-hint {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(18, 16, 14, 0.85);
+      border: 1px solid var(--color-border-subtle);
+      backdrop-filter: blur(8px);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      color: var(--color-gold-light);
+      z-index: 5;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    /* Pillars */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .pillar-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 36px 28px;
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+    .pillar-card:hover {
+      border-color: var(--color-gold-primary);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-gold);
+    }
+    .pillar-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    .pillar-title {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+    }
+    .pillar-desc {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 2.4rem;
+      }
+      .hero-3d-card {
+        height: 400px;
+      }
+      .pillar-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-emblem">🏛️</div>
+        <div class="brand-text">
+          <h1>BẢO TÀNG SỐ 3D</h1>
+          <p>Di Sản Văn Hóa &amp; Photogrammetry</p>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Trang Chủ</a></li>
+        <li><a href="gallery.html" class="nav-link">Thư Viện Hiện Vật</a></li>
+        <li><a href="guide.html" class="nav-link">Quy Trình &amp; Chụp Ảnh</a></li>
+        <li><a href="detail.html?id=trong-dong-dong-son" class="nav-link">Không Gian 3D</a></li>
+        <li class="mobile-admin-btn">
+          <a href="admin.html" class="btn btn-nav-admin">⚙️ Quản Trị Hiện Vật</a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="admin.html" class="btn-nav-admin">
+          <span>⚙️ Quản Trị</span>
+        </a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Hero Section with Live 3D Interactive Showcase -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="badge badge-gold" style="margin-bottom: 16px;">
+            <span>❖ SỐ HÓA DI SẢN QUỐC GIA 3D</span>
+          </div>
+          <h1 class="hero-title">
+            Tái Sinh Hiện Vật Lịch Sử Bằng <span class="text-gradient-gold">Mô Hình 3D</span> Từ Ảnh Thực Tế
+          </h1>
+          <p class="hero-desc">
+            Khám phá tinh hoa di sản văn hóa Việt Nam qua lăng kính công nghệ Photogrammetry tiên tiến. Xoay 360°, phóng to từng đường nét hoa văn ngàn năm tuổi trực tiếp trên trình duyệt mà không cần cài đặt phần mềm.
+          </p>
+
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="gallery.html" class="btn btn-primary btn-lg">
+              <span>🏛️ Khám Phá Hiện Vật 3D</span>
+            </a>
+            <a href="guide.html" class="btn btn-secondary btn-lg">
+              <span>📸 Quy Trình Dựng 3D</span>
+            </a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <h4 id="hero-stat-artifacts">5+</h4>
+              <p>Bảo vật 3D Số Hóa</p>
+            </div>
+            <div class="metric-item">
+              <h4>360°</h4>
+              <p>Tương tác đa góc độ</p>
+            </div>
+            <div class="metric-item">
+              <h4>80%</h4>
+              <p>Độ chồng lấp ảnh chuẩn</p>
+            </div>
+            <div class="metric-item">
+              <h4>4K PBR</h4>
+              <p>Kết cấu chất liệu thực</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive 3D Model Card right on Hero -->
+        <div class="hero-3d-card">
+          <div class="hero-card-tag">
+            <span class="badge badge-national">⭐ BẢO VẬT QUỐC GIA</span>
+          </div>
+
+          <model-viewer 
+            id="hero-model-viewer"
+            src="/models/trong-dong-dong-son.glb" 
+            poster="/assets/images/trong-dong-dong-son/main.svg"
+            alt="Trống Đồng Đông Sơn 3D"
+            camera-controls 
+            auto-rotate 
+            rotation-per-second="25deg"
+            shadow-intensity="1.5"
+            exposure="1.1"
+            interaction-prompt="none">
+          </model-viewer>
+
+          <div class="hero-card-hint">
+            <span>👆 Chạm hoặc kéo chuột để xoay 360° Trống Đồng Đông Sơn</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Mission & Preservation Section -->
+  <section class="section" style="background: rgba(0,0,0,0.25); border-top: 1px solid var(--color-border-subtle); border-bottom: 1px solid var(--color-border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Sứ Mệnh Bảo Tồn</div>
+        <h2 class="section-title">Tại Sao Cần Số Hóa Hiện Vật 3D Từ Ảnh?</h2>
+        <p class="section-desc">
+          Hiện vật lịch sử chịu sự bào mòn khốc liệt của thời gian và điều kiện môi trường. Số hóa 3D bằng công nghệ chụp ảnh Photogrammetry tạo ra "bản sao kỹ thuật số" chuẩn xác đến từng micromet, phục vụ lưu trữ vĩnh cửu và lan tỏa di sản đến hàng triệu người.
+        </p>
+        <div class="divider-ornament"><span>❖</span></div>
+      </div>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <span class="pillar-icon">🏺</span>
+          <h3 class="pillar-title">Bảo Tồn Di Sản Không Xâm Lấn</h3>
+          <p class="pillar-desc">
+            Không sử dụng thiết bị quét tia laser nhiệt độ cao gây ảnh hưởng bề mặt cổ vật dễ tổn thương. Phương pháp chụp ảnh đa góc độ hoàn toàn thụ động, an toàn tuyệt đối cho cổ vật ngàn năm tuổi.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <span class="pillar-icon">🔍</span>
+          <h3 class="pillar-title">Chi Tiết Hình Khối &amp; Kết Cấu Chân Thực</h3>
+          <p class="pillar-desc">
+            Phần mềm xử lý hàng trăm bức ảnh có độ chồng lấp 60–80%, tự động nhận diện hàng triệu điểm tương đồng (tie points) để tái dựng hình khối 3D và kết cấu bề mặt (PBR Texture) sống động như đời thực.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <span class="pillar-icon">🌐</span>
+          <h3 class="pillar-title">Trải Nghiệm Bảo Tàng Số Trực Tuyến</h3>
+          <p class="pillar-desc">
+            Xóa bỏ rào cản địa lý và lồng kính bảo tàng. Khách tham quan có thể xoay lật, soi ngắm các góc khuất, lòng đáy hiện vật và các điểm chú thích khảo cổ học trực tiếp trên máy tính hay điện thoại.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured 3D Artifacts Showcase -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Bộ Sưu Tập Tiêu Biểu</div>
+        <h2 class="section-title">Khám Phá Các Cổ Vật 3D Nổi Bật</h2>
+        <p class="section-desc">
+          Các bảo vật đại diện cho đỉnh cao nghệ thuật đúc đồng Đông Sơn, gốm sứ thời Lê Sơ, điêu khắc đá Chăm Pa và bảo vật truyền quốc triều Nguyễn.
+        </p>
+        <div class="divider-ornament"><span>❖</span></div>
+      </div>
+
+      <div id="home-featured-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px;">
+        <!-- Filled dynamically by JavaScript -->
+      </div>
+
+      <div style="text-align: center; margin-top: 50px;">
+        <a href="gallery.html" class="btn btn-primary btn-lg">
+          <span>Xem Toàn Bộ Thư Viện Hiện Vật (5+)</span> ➔
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-Step Quick Photogrammetry Workflow Teaser -->
+  <section class="section" style="background: rgba(28, 22, 18, 0.6); border-top: 1px solid var(--color-border-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Công Nghệ Tái Tạo 3D</div>
+        <h2 class="section-title">Quy Trình Biến Ảnh Chụp Thành Mô Hình 3D</h2>
+        <p class="section-desc">
+          Chỉ với máy ảnh và kỹ thuật chụp khoa học, hàng chục bức ảnh 2D được chuyển hóa thành mô hình 3D tương tác.
+        </p>
+        <div class="divider-ornament"><span>❖</span></div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+        <div class="card" style="padding: 24px; text-align: center;">
+          <div style="font-size: 2.2rem; margin-bottom: 14px;">📸</div>
+          <div class="badge badge-gold" style="margin-bottom: 12px;">Bước 1</div>
+          <h4 style="font-size: 1.15rem; margin-bottom: 8px;">Chụp Ảnh 360° Đa Góc</h4>
+          <p style="font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.6;">
+            Đặt hiện vật trên bàn xoay, chụp từ 3 góc độ (0°, 45°, 75°) với độ chồng lấp 60–80% giữa các ảnh.
+          </p>
+        </div>
+
+        <div class="card" style="padding: 24px; text-align: center;">
+          <div style="font-size: 2.2rem; margin-bottom: 14px;">💻</div>
+          <div class="badge badge-gold" style="margin-bottom: 12px;">Bước 2</div>
+          <h4 style="font-size: 1.15rem; margin-bottom: 8px;">Dò Điểm &amp; Mây Điểm (SfM)</h4>
+          <p style="font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.6;">
+            Phần mềm Photogrammetry tính toán tọa độ không gian và dựng đám mây điểm dày đặc (Dense Point Cloud).
+          </p>
+        </div>
+
+        <div class="card" style="padding: 24px; text-align: center;">
+          <div style="font-size: 2.2rem; margin-bottom: 14px;">🎨</div>
+          <div class="badge badge-gold" style="margin-bottom: 12px;">Bước 3</div>
+          <h4 style="font-size: 1.15rem; margin-bottom: 8px;">Tạo Lưới &amp; Phủ Texture</h4>
+          <p style="font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.6;">
+            Tái tạo bề mặt lưới đa giác (Mesh) và trích xuất kết cấu màu sắc sắc nét từ ảnh gốc trải lên mô hình.
+          </p>
+        </div>
+
+        <div class="card" style="padding: 24px; text-align: center;">
+          <div style="font-size: 2.2rem; margin-bottom: 14px;">🌐</div>
+          <div class="badge badge-gold" style="margin-bottom: 12px;">Bước 4</div>
+          <h4 style="font-size: 1.15rem; margin-bottom: 8px;">Xuất GLB &amp; Trưng Bày Web</h4>
+          <p style="font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.6;">
+            Xuất file chuẩn GLB nhẹ, nhúng vào WebGL/Model Viewer cho người dùng xoay lật trực tiếp trên trình duyệt.
+          </p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="guide.html" class="btn btn-secondary">
+          <span>Xem Toàn Bộ Hướng Dẫn &amp; Sơ Đồ Kỹ Thuật</span> ➔
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>🏛️ BẢO TÀNG SỐ DI SẢN 3D</h2>
+          <p>
+            Dự án nghiên cứu và ứng dụng công nghệ Photogrammetry số hóa hiện vật lịch sử văn hóa Việt Nam. Mang di sản ngàn năm bước vào kỷ nguyên số.
+          </p>
+          <div style="display: flex; gap: 12px;">
+            <span class="badge badge-gold">WebGL 3D</span>
+            <span class="badge badge-gold">Photogrammetry</span>
+            <span class="badge badge-gold">Bảo Tàng Số</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Điều Hướng</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="gallery.html">Thư Viện Hiện Vật</a></li>
+            <li><a href="guide.html">Quy Trình Dựng 3D</a></li>
+            <li><a href="detail.html?id=trong-dong-dong-son">Không Gian Triển Lãm</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Bộ Sưu Tập</h3>
+          <ul class="footer-links">
+            <li><a href="gallery.html?cat=bronze">Đồ Đồng Đông Sơn</a></li>
+            <li><a href="gallery.html?cat=ceramic">Gốm Hoa Lam Lê Sơ</a></li>
+            <li><a href="gallery.html?cat=sculpture">Điêu Khắc Chăm Pa</a></li>
+            <li><a href="gallery.html?cat=gold">Kim Khí Triều Nguyễn</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Hệ Thống</h3>
+          <p style="font-size: 0.88rem; color: var(--color-text-secondary); margin-bottom: 14px;">
+            Dành cho cán bộ bảo tàng, nhà nghiên cứu và quản trị viên di sản:
+          </p>
+          <a href="admin.html" class="btn btn-primary btn-sm" style="width: 100%;">
+            <span>⚙️ Đăng Nhập Quản Trị</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Bảo Tàng Số 3D Hiện Vật Văn Hóa. Tái tạo bằng công nghệ Photogrammetry.</p>
+        <p>Hệ thống phục vụ nghiên cứu, giáo dục và bảo tồn di sản phi lợi nhuận.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    // Load 3 featured artifacts for homepage showcase
+    fetch('/api/artifacts')
+      .then(res => res.json())
+      .then(json => {
+        if (json.success && Array.isArray(json.data)) {
+          const featured = json.data.slice(0, 3);
+          const grid = document.getElementById('home-featured-grid');
+          if (grid) {
+            grid.innerHTML = featured.map(item => `
+              <div class="card">
+                <div class="card-media">
+                  <img src="${item.mainImage || '/assets/images/trong-dong-dong-son/main.svg'}" alt="${item.name}" loading="lazy" />
+                  <div class="card-tag-badge">
+                    <span class="badge ${item.heritageRank?.includes('Bảo vật Quốc gia') ? 'badge-national' : 'badge-gold'}">
+                      ${item.categoryName || 'Hiện vật'}
+                    </span>
+                  </div>
+                  <div class="card-3d-indicator">
+                    <span>🌐 Xoay 360°</span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h3 class="card-title"><a href="detail.html?id=${item.id}">${item.name}</a></h3>
+                  <div class="card-meta">
+                    <span class="card-meta-item">⏳ ${item.period || 'Chưa rõ'}</span>
+                    <span class="card-meta-item">🏛️ ${item.location || 'Bảo tàng Quốc gia'}</span>
+                  </div>
+                  <p class="card-excerpt">${item.description || ''}</p>
+                  <div class="card-footer">
+                    <span class="card-capture-meta">📸 Tái tạo từ <strong>${item.captureInfo?.photoCount || 60} ảnh</strong></span>
+                    <a href="detail.html?id=${item.id}" class="btn btn-primary btn-sm">
+                      <span>Xem 3D</span> ➔
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `).join('');
+          }
+        }
+      })
+      .catch(err => console.error(err));
+  </script>
+</body>
+</html>
+

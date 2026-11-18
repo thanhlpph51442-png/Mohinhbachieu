@@ -1,0 +1,23 @@
+{
+  "name": "bao-tang-so-3d-hien-vat",
+  "version": "1.0.0",
+  "description": "Website giới thiệu và trưng bày mô hình 3D hiện vật lịch sử văn hóa từ ảnh chụp thực tế (Photogrammetry)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "generate-models": "node scripts/generate_models.js",
+    "generate-assets": "node scripts/generate_assets.js"
+  },
+  "keywords": [
+    "photogrammetry",
+    "3d-museum",
+    "heritage",
+    "threejs",
+    "model-viewer",
+    "vietnam-history",
+    "digital-museum"
+  ],
+  "author": "Vietnam Digital Heritage Initiative",
+  "license": "MIT"
+}
+

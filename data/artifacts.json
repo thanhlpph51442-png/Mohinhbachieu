@@ -1,0 +1,267 @@
+[
+  {
+    "id": "trong-dong-dong-son",
+    "name": "Trống Đồng Đông Sơn Ngọc Lũ",
+    "category": "bronze",
+    "categoryName": "Đồ Đồng Khảo Cổ",
+    "period": "Văn hóa Đông Sơn (Khoảng thế kỷ VII – II TCN)",
+    "material": "Đồng thau (hợp kim đồng, thiếc, chì với kỹ thuật đúc sáp chảy tinh xảo)",
+    "dimensions": "Đường kính mặt: 86 cm, Chiều cao: 63 cm, Trọng lượng: 86 kg",
+    "location": "Bảo tàng Lịch sử Quốc gia (Hà Nội, Việt Nam)",
+    "heritageRank": "Bảo vật Quốc gia (Đợt 1, Quyết định số 1426/QĐ-TTg của Thủ tướng Chính phủ)",
+    "modelPath": "/models/trong-dong-dong-son.glb",
+    "mainImage": "/assets/images/trong-dong-dong-son/main.svg",
+    "photos": [
+      { "url": "/assets/images/trong-dong-dong-son/angle_front.svg", "title": "Góc chính diện (0°)" },
+      { "url": "/assets/images/trong-dong-dong-son/angle_side.svg", "title": "Quai kép chữ U và tang trống" },
+      { "url": "/assets/images/trong-dong-dong-son/angle_top.svg", "title": "Mặt trống - Ngôi sao 14 cánh & Chim Lạc" },
+      { "url": "/assets/images/trong-dong-dong-son/angle_macro.svg", "title": "Cận cảnh vết rỗ đồng cổ và tượng cóc" }
+    ],
+    "captureInfo": {
+      "photoCount": 118,
+      "camera": "Sony A7R IV - 61MP, Lens FE 50mm f/2.8 Macro",
+      "overlap": "75%",
+      "reconstructionSoftware": "RealityCapture & Agisoft Metashape",
+      "polygonCount": "48,500 Faces (Decimated from 4.2M High-Poly)",
+      "textureResolution": "4096 x 4096 PBR"
+    },
+    "description": "Trống đồng Ngọc Lũ là hiện vật tiêu biểu và hoàn hảo nhất trong nền văn hóa Đông Sơn của người Việt cổ. Trống có dáng cân đối, chia làm 3 phần rõ rệt: tang nở phình, thân hình trụ tròn thon gọn và chân choãi hình nón cụt. Mặt trống phẳng, chính giữa đúc nổi ngôi sao 14 cánh biểu trưng cho thần Mặt trời, bao quanh bởi 16 vành hoa văn tinh xảo miêu tả cảnh sinh hoạt lễ hội, giã gạo, chèo thuyền chiến, vũ công đội mũ lông chim và đàn chim Lạc bay ngược chiều kim đồng hồ.",
+    "historicalSignificance": "Trống đồng không chỉ là một nhạc khí thiêng trong các nghi lễ nông nghiệp và hội làng, mà còn là biểu tượng quyền lực tối cao của các thủ lĩnh Lạc Việt thời các Vua Hùng dựng nước Văn Lang. Trống minh chứng cho đỉnh cao kỹ thuật luyện kim đúc đồng và tư duy thẩm mỹ kỳ diệu của tổ tiên cách đây hơn 2.500 năm.",
+    "references": [
+      "Hồ sơ Di sản Bảo vật Quốc gia - Cục Di sản Văn hóa, Bộ VHTTDL",
+      "GS. Hà Văn Tấn (1994), Văn hóa Đông Sơn ở Việt Nam, NXB Khoa học Xã hội",
+      "Bảo tàng Lịch sử Quốc gia Việt Nam (baotanglichsu.vn)"
+    ],
+    "hotspots": [
+      {
+        "slot": "hotspot-sun",
+        "position": "0m 0.43m 0m",
+        "normal": "0m 1m 0m",
+        "title": "Ngôi Sao Mặt Trời 14 Cánh",
+        "text": "Tâm mặt trống là mặt trời 14 tia sáng xen kẽ họa tiết lông công hình tam giác, biểu tượng cho tín ngưỡng thờ thần Mặt trời và nông nghiệp lúa nước."
+      },
+      {
+        "slot": "hotspot-birds",
+        "position": "0.22m 0.42m 0.15m",
+        "normal": "0m 1m 0m",
+        "title": "Vành Đàn Chim Lạc",
+        "text": "16 con chim Lạc (chim thiêng sải cánh bay) ngược chiều kim đồng hồ, thể hiện ước vọng hòa quyện với vũ trụ và sự sinh sôi của vạn vật."
+      },
+      {
+        "slot": "hotspot-handle",
+        "position": "0.38m 0.22m 0.28m",
+        "normal": "1m 0m 1m",
+        "title": "Quai Kép Bện Thừng",
+        "text": "Quai trống đúc đối xứng hình bện thừng chắc khỏe, chạm hoa văn bông lúa, dùng để luồn dây khi khiêng rước tế lễ."
+      }
+    ]
+  },
+  {
+    "id": "binh-gom-hoa-lam",
+    "name": "Bình Gốm Hoa Lam Triều Lê Sơ",
+    "category": "ceramic",
+    "categoryName": "Gốm Sứ Cổ Truyền",
+    "period": "Triều Hậu Lê (Thời Lê Sơ, Thế kỷ XV)",
+    "material": "Cốt gốm sành trắng mịn, men tro ngà phủ ngoài, trang trí sắc lam oxit coban",
+    "dimensions": "Chiều cao: 56.5 cm, Đường kính miệng: 23.8 cm, Đường kính đáy: 25.5 cm",
+    "location": "Bảo tàng Lịch sử Quốc gia (Hà Nội, Việt Nam)",
+    "heritageRank": "Cổ vật Quý hiếm - Di sản Gốm Chu Đậu xuất khẩu",
+    "modelPath": "/models/binh-gom-hoa-lam.glb",
+    "mainImage": "/assets/images/binh-gom-hoa-lam/main.svg",
+    "photos": [
+      { "url": "/assets/images/binh-gom-hoa-lam/angle_front.svg", "title": "Dáng mai bình cân đối" },
+      { "url": "/assets/images/binh-gom-hoa-lam/angle_side.svg", "title": "Băng hoa sen cánh xếp" },
+      { "url": "/assets/images/binh-gom-hoa-lam/angle_top.svg", "title": "Miệng bình và cổ thon" },
+      { "url": "/assets/images/binh-gom-hoa-lam/angle_macro.svg", "title": "Nét vẽ bút lông oxit coban dưới men" }
+    ],
+    "captureInfo": {
+      "photoCount": 84,
+      "camera": "Canon EOS R5 - 45MP, Lens RF 85mm f/2 Macro",
+      "overlap": "80%",
+      "reconstructionSoftware": "Meshroom 2023 & Blender 4.0",
+      "polygonCount": "32,000 Faces",
+      "textureResolution": "4096 x 4096 PBR"
+    },
+    "description": "Bình gốm hoa lam thời Lê Sơ là đỉnh cao của nghệ thuật gốm Chu Đậu - Nam Sách lừng danh thế giới. Chiếc bình mang dáng mai bình thanh thoát, cổ thon tròn, vai nở phình đẫy đà. Thân bình được chia thành nhiều tầng hoa văn vẽ bằng màu lam cô-ban dưới lớp men trong suốt. Các băng hoa văn trang trí hình búp sen, hoa cúc dây mẫu đơn, dải mây hình khánh và sóng nước thủy ba sống động.",
+    "historicalSignificance": "Gốm hoa lam thời Lê Sơ khẳng định bản sắc văn hóa Việt Nam độc lập và tự chủ rực rỡ sau cuộc khởi nghĩa Lam Sơn. Dòng gốm này từng chu du khắp các đại dương trên con đường tơ lụa trên biển, hiện diện tại các bảo tàng danh giá như Topkapi Saray (Thổ Nhĩ Kỳ) và Tokyo (Nhật Bản).",
+    "references": [
+      "Bùi Minh Trí - Kerry Nguyễn Long (2001), Gốm hoa lam Việt Nam, NXB Khoa học Xã hội",
+      "Viện Khảo cổ học Việt Nam - Báo cáo khai quật tàu cổ Cù Lao Chàm",
+      "Bảo tàng Gốm sứ Chu Đậu Hải Dương"
+    ],
+    "hotspots": [
+      {
+        "slot": "hotspot-neck",
+        "position": "0m 0.45m 0.08m",
+        "normal": "0m 0m 1m",
+        "title": "Họa Tiết Lá Chuối Cổ Bình",
+        "text": "Băng lá chuối tiêu và mây hình khánh vút lên thanh thoát, tôn thêm vẻ kiêu sa của cổ bình."
+      },
+      {
+        "slot": "hotspot-shoulder",
+        "position": "0.18m 0.15m 0.16m",
+        "normal": "1m 1m 1m",
+        "title": "Băng Hoa Cúc Dây & Mẫu Đơn",
+        "text": "Họa tiết chủ đạo uốn lượn mềm mại quanh thân tròn phình, thể hiện kỹ thuật phóng bút linh hoạt của người thợ gốm Lê Sơ."
+      },
+      {
+        "slot": "hotspot-base",
+        "position": "0m -0.38m 0.17m",
+        "normal": "0m 0m 1m",
+        "title": "Cánh Sen Dằn Chân Đế",
+        "text": "Băng cánh sen kép úp ngược vững chãi nơi chân đế, mang đậm dấu ấn Phật giáo và sự thanh tịnh cao khiết."
+      }
+    ]
+  },
+  {
+    "id": "thap-dong-dao-thinh",
+    "name": "Thạp Đồng Đào Thịnh",
+    "category": "bronze",
+    "categoryName": "Đồ Đồng Khảo Cổ",
+    "period": "Văn hóa Đông Sơn (Khoảng thế kỷ V – I TCN)",
+    "material": "Đồng đúc nguyên khối dày dặn, patin xám đen cổ kính",
+    "dimensions": "Chiều cao: 98 cm, Đường kính miệng: 61 cm, Đường kính đáy: 60 cm",
+    "location": "Bảo tàng Lịch sử Quốc gia (Hà Nội, Việt Nam)",
+    "heritageRank": "Bảo vật Quốc gia (Công nhận đợt 1 năm 2012)",
+    "modelPath": "/models/thap-dong-dao-thinh.glb",
+    "mainImage": "/assets/images/thap-dong-dao-thinh/main.svg",
+    "photos": [
+      { "url": "/assets/images/thap-dong-dao-thinh/angle_front.svg", "title": "Toàn cảnh thân thạp hình trụ" },
+      { "url": "/assets/images/thap-dong-dao-thinh/angle_side.svg", "title": "Băng chạm khắc thuyền chiến trên thân" },
+      { "url": "/assets/images/thap-dong-dao-thinh/angle_top.svg", "title": "Nắp thạp và tượng phồn thực" },
+      { "url": "/assets/images/thap-dong-dao-thinh/angle_macro.svg", "title": "Chi tiết cá sấu gặm mồi và chiến binh" }
+    ],
+    "captureInfo": {
+      "photoCount": 105,
+      "camera": "Nikon Z7 II - 45.7MP, Lens 50mm f/1.8 S",
+      "overlap": "75%",
+      "reconstructionSoftware": "Agisoft Metashape Professional",
+      "polygonCount": "42,000 Faces",
+      "textureResolution": "4096 x 4096 PBR"
+    },
+    "description": "Thạp đồng Đào Thịnh được phát hiện ngẫu nhiên bên bờ sông Hồng thuộc huyện Trấn Yên, tỉnh Yên Bái năm 1961. Đây là chiếc thạp đồng có kích thước đồ sộ và hoa văn phong phú nhất từng được tìm thấy. Nắp thạp có 4 khối tượng đôi nam nữ giao hoan - biểu tượng phồn thực cầu mong mưa thuận gió hòa, mùa màng tươi tốt và con người sinh sôi. Thân thạp khắc 25 băng hoa văn với hình 6 chiếc thuyền chiến mũi nhọn chở đầy cung thủ và chỉ huy.",
+    "historicalSignificance": "Thạp Đào Thịnh là báu vật độc nhất vô nhị phản ánh quan niệm nhân sinh quan, tín ngưỡng phồn thực nguyên thủy và khí thế hào hùng của các thủy binh Lạc Việt thời cổ đại trên các dòng sông lớn.",
+    "references": [
+      "Hồ sơ Di sản Văn hóa Việt Nam - Thạp đồng Đào Thịnh",
+      "Tạp chí Khảo cổ học số 3 - Viện Khảo cổ học",
+      "Trần Quốc Vượng (1998), Văn hóa Việt Nam - Tìm tòi và suy ngẫm"
+    ],
+    "hotspots": [
+      {
+        "slot": "hotspot-lid-statues",
+        "position": "0.14m 0.45m 0.14m",
+        "normal": "1m 1m 1m",
+        "title": "Tượng Đôi Giao Hoan Phồn Thực",
+        "text": "Bốn khối tượng nam nữ gắn trên nắp biểu thị khát vọng sinh sôi nảy nở của vạn vật, nét độc đáo hiếm có trong mỹ thuật cổ Đông Á."
+      },
+      {
+        "slot": "hotspot-warship",
+        "position": "0m 0.12m 0.31m",
+        "normal": "0m 0m 1m",
+        "title": "Chiến Thuyền Lạc Việt",
+        "text": "Băng thuyền chiến mũi cong vút, chở chiến binh cởi trần đóng khố, tay cầm rìu chiến, lao phóng và cung tên sẵn sàng nghênh chiến."
+      }
+    ]
+  },
+  {
+    "id": "tuong-cham-pa",
+    "name": "Tượng Bồ Tát Tara Đồng Dương",
+    "category": "sculpture",
+    "categoryName": "Điêu Khắc Đá Cổ",
+    "period": "Văn hóa Chăm Pa - Phong cách Phật giáo Đồng Dương (Cuối thế kỷ IX)",
+    "material": "Sa thạch nguyên khối (Grey Cham Sandstone) chạm lộng thủ công",
+    "dimensions": "Chiều cao: 114 cm, Chiều rộng: 45 cm, Trọng lượng: khoảng 90 kg",
+    "location": "Bảo tàng Điêu khắc Chăm (Đà Nẵng, Việt Nam)",
+    "heritageRank": "Bảo vật Quốc gia (Công nhận năm 2013)",
+    "modelPath": "/models/tuong-cham-pa.glb",
+    "mainImage": "/assets/images/tuong-cham-pa/main.svg",
+    "photos": [
+      { "url": "/assets/images/tuong-cham-pa/angle_front.svg", "title": "Diện mạo Bồ Tát Tara uy nghiêm" },
+      { "url": "/assets/images/tuong-cham-pa/angle_side.svg", "title": "Nếp gấp xăm pốt sarong mềm mại" },
+      { "url": "/assets/images/tuong-cham-pa/angle_top.svg", "title": "Búi tóc vương miện Jatamukuta" },
+      { "url": "/assets/images/tuong-cham-pa/angle_macro.svg", "title": "Vân sa thạch phong hóa ngàn năm" }
+    ],
+    "captureInfo": {
+      "photoCount": 92,
+      "camera": "Sony Alpha 7 IV - 33MP, FE 24-70mm f/2.8 GM",
+      "overlap": "70%",
+      "reconstructionSoftware": "RealityCapture v1.3",
+      "polygonCount": "52,000 Faces",
+      "textureResolution": "4096 x 4096 PBR"
+    },
+    "description": "Tượng Bồ Tát Tara được người dân làng Đồng Dương (huyện Thăng Bình, Quảng Nam) phát hiện vào năm 1978 tại di tích Phật viện Đồng Dương. Bức tượng thể hiện vị Bồ Tát từ bi với thân hình cân đối, ngực trần đầy đặn theo quy chuẩn vẻ đẹp Chăm Pa cổ, hai tay giơ ra phía trước cầm hoa sen và gương ốc pháp. Đôi mắt sắc sảo viền mí đậm, chân mày liền nét uy nghiêm và mái tóc búi cao tầng tầng lớp lớp tinh xảo.",
+    "historicalSignificance": "Tượng Tara là kiệt tác điêu khắc đá Phật giáo Chăm Pa duy nhất còn nguyên vẹn kích thước lớn, minh chứng cho thời kỳ hưng thịnh của Phật giáo Mật tông Đại thừa tại Vương quốc Champa dưới triều vua Indravarman II.",
+    "references": [
+      "Jean Boisselier (1963), La Statuaire du Champa, EFEO Paris",
+      "Ngô Văn Doanh (2002), Văn hóa Cổ Champa, NXB Văn hóa Dân tộc",
+      "Bảo tàng Điêu khắc Chăm Đà Nẵng (chammuseum.vn)"
+    ],
+    "hotspots": [
+      {
+        "slot": "hotspot-face",
+        "position": "0m 0.28m 0.12m",
+        "normal": "0m 0m 1m",
+        "title": "Gương Mặt Thần Thái Bí Ẩn",
+        "text": "Nét mặt đoan nghiêm, trán có ấn Urna, môi cười mỉm từ ái, phản ánh phong cách điêu khắc Đồng Dương độc nhất vô nhị."
+      },
+      {
+        "slot": "hotspot-crown",
+        "position": "0m 0.44m 0.08m",
+        "normal": "0m 1m 0m",
+        "title": "Búi Tóc Jatamukuta",
+        "text": "Tóc búi cao kết nhiều tầng hoa lá cách điệu, chính giữa chạm hình Phật A Di Đà ngồi tọa thiền."
+      }
+    ]
+  },
+  {
+    "id": "an-vang-hoang-de",
+    "name": "Ấn Vàng 'Hoàng Đế Chi Bảo'",
+    "category": "gold",
+    "categoryName": "Kim Khí Hoàng Gia",
+    "period": "Triều Nguyễn (Đúc năm Minh Mạng thứ 4 - 1823)",
+    "material": "Vàng ròng 10 tuổi (vàng mười đúc đặc, độ tinh khiết xấp xỉ 90%)",
+    "dimensions": "Chiều cao: 10.4 cm, Mặt ấn: 13.8 x 13.8 cm, Trọng lượng: 10.78 kg (280 lạng 9 đồng 2 phân)",
+    "location": "Bảo tàng Hoàng gia - Di sản Hồi hương Việt Nam (Hà Nội, Việt Nam)",
+    "heritageRank": "Bảo vật Truyền quốc của Triều Nguyễn",
+    "modelPath": "/models/an-vang-hoang-de.glb",
+    "mainImage": "/assets/images/an-vang-hoang-de/main.svg",
+    "photos": [
+      { "url": "/assets/images/an-vang-hoang-de/angle_front.svg", "title": "Toàn cảnh thân ấn và đầu rồng ngẩng" },
+      { "url": "/assets/images/an-vang-hoang-de/angle_side.svg", "title": "Núm rồng cuộn và móng vuốt bám đế" },
+      { "url": "/assets/images/an-vang-hoang-de/angle_top.svg", "title": "Lưng rồng khắc niên đại Minh Mạng" },
+      { "url": "/assets/images/an-vang-hoang-de/angle_macro.svg", "title": "Bốn chữ triện 'Hoàng Đế Chi Bảo' mặt đáy" }
+    ],
+    "captureInfo": {
+      "photoCount": 110,
+      "camera": "Hasselblad H6D-100c - 100MP, Lens 120mm Macro",
+      "overlap": "80%",
+      "reconstructionSoftware": "RealityCapture High-Accuracy Laser & Photogrammetry",
+      "polygonCount": "36,000 Faces",
+      "textureResolution": "4096 x 4096 PBR 32-bit Metalness"
+    },
+    "description": "Ấn 'Hoàng Đế Chi Bảo' là kim bảo quan trọng bậc nhất của vương triều nhà Nguyễn, biểu trưng cho quyền lực tối cao của Hoàng đế Đại Nam. Quai ấn đúc hình một con rồng uốn khúc uyển chuyển, đầu rồng ngẩng cao, trán khắc chữ 'Vương', hai sừng nhọn, vây lưng dựng đứng và đuôi xòe hình ngọn lửa. Bốn chân rồng có 5 móng sắc nhọn bám chặt trên lưng bệ ấn hình vuông. Mặt đáy khắc bốn chữ triện nổi 'Hoàng Đế Chi Bảo'.",
+    "historicalSignificance": "Chiếc kim ấn này đã được Vua Bảo Đại trao lại cho đại diện Chính phủ Việt Nam Dân chủ Cộng hòa vào chiều ngày 30/8/1945 tại Ngọ Môn Huế, đánh dấu sự kết thúc của chế độ quân chủ và mở ra kỷ nguyên độc lập tự do của dân tộc. Sau gần 80 năm lưu lạc ở nước ngoài, cổ vật đã được hồi hương thành công về Việt Nam vào cuối năm 2023.",
+    "references": [
+      "Khâm định Đại Nam thực lục - Quốc sử quán triều Nguyễn",
+      "Trần Đức Anh Sơn (2018), Đồ sứ ký kiểu và Kim bảo ngọc tỷ thời Nguyễn",
+      "Bộ Văn hóa, Thể thao và Du lịch - Thông cáo Hồi hương Ấn vàng Hoàng Đế Chi Bảo"
+    ],
+    "hotspots": [
+      {
+        "slot": "hotspot-dragon-head",
+        "position": "0.14m 0.25m 0.05m",
+        "normal": "1m 1m 0m",
+        "title": "Đầu Rồng 5 Móng Uy Quyền",
+        "text": "Rồng đúc theo quy chế ngũ trảo hoàng gia, đầu ngẩng cao dũng mãnh, biểu thị uy đức của vị hoàng đế."
+      },
+      {
+        "slot": "hotspot-seal-text",
+        "position": "0m -0.16m 0m",
+        "normal": "0m -1m 0m",
+        "title": "Chữ Triện 'Hoàng Đế Chi Bảo'",
+        "text": "Bốn chữ triện khắc sắc nét mặt đáy ấn, chỉ được đóng trên các chiếu thư ân xá, sắc phong vương hầu và ngoại giao trọng đại."
+      }
+    ]
+  }
+]
+

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+    <defs>
+      <linearGradient id="g_trong-dong-dong-son" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#3d4838" />
+        <stop offset="100%" stop-color="#222b1e" />
+      </linearGradient>
+      <radialGradient id="spot_trong-dong-dong-son" cx="50%" cy="45%" r="45%">
+        <stop offset="0%" stop-color="#d4af37" stop-opacity="0.3" />
+        <stop offset="100%" stop-color="#000" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <rect width="600" height="450" fill="url(#g_trong-dong-dong-son)" />
+    <circle cx="300" cy="200" r="180" fill="url(#spot_trong-dong-dong-son)" />
+
+    <!-- Heritage Border Pattern -->
+    <rect x="18" y="18" width="564" height="414" fill="none" stroke="#d4af37" stroke-width="1.5" stroke-opacity="0.4" rx="10" />
+    <rect x="26" y="26" width="548" height="398" fill="none" stroke="#d4af37" stroke-width="0.8" stroke-opacity="0.2" rx="8" />
+
+    <!-- Corner Ornaments -->
+    <g fill="#d4af37" opacity="0.6">
+      <circle cx="36" cy="36" r="4" /><circle cx="564" cy="36" r="4" />
+      <circle cx="36" cy="414" r="4" /><circle cx="564" cy="414" r="4" />
+    </g>
+
+    <!-- Center Silhouette representation -->
+    <circle cx="300" cy="200" r="110" fill="#140f0c" stroke="#d4af37" stroke-width="2" />
+    <text x="300" y="195" font-size="52" text-anchor="middle">🏛️</text>
+    <text x="300" y="240" fill="#e6c687" font-size="13" font-weight="700" text-anchor="middle" font-family="'Cinzel', serif, system-ui">
+      3D PHOTOGRAMMETRY
+    </text>
+
+    <!-- Badge -->
+    <rect x="210" y="55" width="180" height="30" fill="#d4af37" rx="15" />
+    <text x="300" y="75" fill="#140f0c" font-size="12" font-weight="800" text-anchor="middle" font-family="system-ui">
+      BẢO VẬT QUỐC GIA
+    </text>
+
+    <!-- Title and details -->
+    <text x="300" y="350" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle" font-family="'Cinzel', serif, system-ui">
+      Trống Đồng Đông Sơn Ngọc Lũ
+    </text>
+    <text x="300" y="380" fill="#c5a059" font-size="13" text-anchor="middle" font-family="system-ui">
+      Mặt trời 14 tia & Chim Lạc
+    </text>
+    <text x="300" y="405" fill="#a89a8a" font-size="11" text-anchor="middle" font-family="system-ui">
+      Mô hình 3D dựng từ 84 góc ảnh thực tế • Tỉ lệ 1:1 chuẩn xác
+    </text>
+  </svg>

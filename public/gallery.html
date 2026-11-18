@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thư Viện Hiện Vật 3D | Bảo Tàng Số</title>
+  <meta name="description" content="Tra cứu và khám phá kho tàng hiện vật lịch sử văn hóa Việt Nam được tái tạo dưới dạng mô hình 3D tương tác.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .gallery-header-section {
+      padding: 50px 0 30px 0;
+      text-align: center;
+    }
+    .gallery-header-section h1 {
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+    }
+    .gallery-header-section p {
+      color: var(--color-text-secondary);
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* Filter & Controls Toolbar */
+    .gallery-controls-bar {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin: 30px 0 40px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: var(--shadow-md);
+    }
+    .controls-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .search-box-wrapper {
+      position: relative;
+      flex: 1;
+      min-width: 280px;
+    }
+    .search-input {
+      width: 100%;
+      background: #14100c;
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-full);
+      padding: 12px 20px 12px 46px;
+      color: var(--color-text-primary);
+      font-size: 0.95rem;
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+    .search-input:focus {
+      border-color: var(--color-gold-primary);
+      box-shadow: var(--shadow-gold);
+    }
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-bronze);
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    /* Category Filter Pills */
+    .category-filter-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .category-filter-btn {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-subtle);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .category-filter-btn:hover {
+      border-color: var(--color-gold-primary);
+      color: var(--color-gold-light);
+    }
+    .category-filter-btn.active {
+      background: var(--color-gold-primary);
+      color: #12100e;
+      border-color: var(--color-gold-primary);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .controls-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid rgba(197, 160, 89, 0.1);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .filter-select {
+      background: #14100c;
+      color: var(--color-gold-light);
+      border: 1px solid var(--color-border-subtle);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .view-toggle-group {
+      display: flex;
+      background: #14100c;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border-subtle);
+      overflow: hidden;
+    }
+    .view-toggle-btn {
+      background: transparent;
+      color: var(--color-text-secondary);
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition-fast);
+    }
+    .view-toggle-btn.active {
+      background: var(--color-gold-primary);
+      color: #12100e;
+    }
+
+    /* Grid & List Styles */
+    .artifacts-grid-view {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .artifacts-list-view {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .card-horizontal {
+      display: flex;
+      flex-direction: row;
+    }
+    @media (max-width: 768px) {
+      .card-horizontal {
+        flex-direction: column;
+      }
+      .card-horizontal .card-media {
+        width: 100% !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-emblem">🏛️</div>
+        <div class="brand-text">
+          <h1>BẢO TÀNG SỐ 3D</h1>
+          <p>Di Sản Văn Hóa &amp; Photogrammetry</p>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Trang Chủ</a></li>
+        <li><a href="gallery.html" class="nav-link active">Thư Viện Hiện Vật</a></li>
+        <li><a href="guide.html" class="nav-link">Quy Trình &amp; Chụp Ảnh</a></li>
+        <li><a href="detail.html?id=trong-dong-dong-son" class="nav-link">Không Gian 3D</a></li>
+        <li class="mobile-admin-btn">
+          <a href="admin.html" class="btn btn-nav-admin">⚙️ Quản Trị Hiện Vật</a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="admin.html" class="btn-nav-admin">
+          <span>⚙️ Quản Trị</span>
+        </a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main class="container" style="padding-bottom: 80px;">
+    <!-- Gallery Header -->
+    <section class="gallery-header-section">
+      <div class="badge badge-gold" style="margin-bottom: 12px;">
+        <span>❖ BỘ SƯU TẬP HIỆN VẬT SỐ HÓA</span>
+      </div>
+      <h1>Thư Viện Hiện Vật Ba Chiều (3D)</h1>
+      <p>
+        Tra cứu, đối chiếu và trải nghiệm trực tiếp các bảo vật văn hóa ngàn năm qua các mô hình 3D được tái tạo từ nhiều góc ảnh chụp thực tế.
+      </p>
+    </section>
+
+    <!-- Filter & Search Toolbar -->
+    <div class="gallery-controls-bar">
+      <div class="controls-top-row">
+        <!-- Search bar -->
+        <div class="search-box-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="search-input" placeholder="Tìm kiếm theo tên hiện vật, chất liệu, nơi lưu giữ..." />
+        </div>
+
+        <!-- View mode switcher -->
+        <div class="view-toggle-group">
+          <button class="view-toggle-btn active" data-view="grid" title="Chế độ xem dạng lưới">⊞ Lưới</button>
+          <button class="view-toggle-btn" data-view="list" title="Chế độ xem dạng danh sách">☰ Danh Sách</button>
+        </div>
+      </div>
+
+      <!-- Categories Pills -->
+      <div class="category-filter-group">
+        <span style="font-size: 0.82rem; color: var(--color-bronze); font-weight: 700; text-transform: uppercase;">Phân loại:</span>
+        <button class="category-filter-btn active" data-category="all">Tất Cả Hiện Vật</button>
+        <button class="category-filter-btn" data-category="bronze">Đồ Đồng Khảo Cổ</button>
+        <button class="category-filter-btn" data-category="ceramic">Gốm Sứ Cổ Truyền</button>
+        <button class="category-filter-btn" data-category="sculpture">Điêu Khắc Sa Thạch</button>
+        <button class="category-filter-btn" data-category="gold">Kim Khí Hoàng Gia</button>
+      </div>
+
+      <!-- Bottom Filters Row -->
+      <div class="controls-bottom-row">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 0.85rem; color: var(--color-text-muted);">Niên đại / Thời kỳ:</span>
+          <select id="period-filter-select" class="filter-select">
+            <option value="all">Tất cả thời kỳ</option>
+            <!-- Dynamically populated -->
+          </select>
+        </div>
+
+        <div style="font-size: 0.88rem; color: var(--color-text-secondary);">
+          Hiển thị: <strong id="result-count" style="color: var(--color-gold-light);">0 hiện vật</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Artifacts Container (Grid/List) -->
+    <div id="artifacts-container" class="artifacts-grid-view">
+      <!-- Loaded dynamically via gallery.js -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>🏛️ BẢO TÀNG SỐ DI SẢN 3D</h2>
+          <p>Dự án số hóa hiện vật văn hóa bằng công nghệ Photogrammetry và WebGL.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Trang Chính</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="gallery.html">Thư Viện Hiện Vật</a></li>
+            <li><a href="guide.html">Quy Trình &amp; Chụp Ảnh</a></li>
+            <li><a href="admin.html">Trang Quản Trị</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Bộ Sưu Tập</h3>
+          <ul class="footer-links">
+            <li><a href="detail.html?id=trong-dong-dong-son">Trống Đồng Đông Sơn</a></li>
+            <li><a href="detail.html?id=binh-gom-hoa-lam">Bình Gốm Hoa Lam Lê Sơ</a></li>
+            <li><a href="detail.html?id=thap-dong-dao-thinh">Thạp Đồng Đào Thịnh</a></li>
+            <li><a href="detail.html?id=tuong-cham-pa">Tượng Bồ Tát Chăm Pa</a></li>
+            <li><a href="detail.html?id=an-vang-hoang-de">Ấn Vàng Hoàng Đế Chi Bảo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Hệ Thống</h3>
+          <p style="font-size: 0.88rem; color: var(--color-text-secondary); margin-bottom: 12px;">
+            Thêm mới hoặc chỉnh sửa dữ liệu hiện vật thông qua cổng quản trị viên.
+          </p>
+          <a href="admin.html" class="btn btn-secondary btn-sm" style="width: 100%;">Quản Trị Hiện Vật</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Bảo Tàng Số 3D Hiện Vật Văn Hóa. Tái tạo bằng công nghệ Photogrammetry.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>
+

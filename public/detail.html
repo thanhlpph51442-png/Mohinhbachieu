@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi Tiết Hiện Vật 3D | Bảo Tàng Số</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- 3D Engines: Google Model Viewer & Three.js Fallback -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/viewer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .detail-header-nav {
+      padding: 24px 0 16px 0;
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+    }
+    .detail-header-nav a {
+      color: var(--color-bronze);
+    }
+    .detail-main-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 36px;
+      margin-bottom: 60px;
+    }
+    .detail-info-panel {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Specs table */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      background: #14100c;
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(197, 160, 89, 0.15);
+      padding-bottom: 8px;
+      font-size: 0.9rem;
+    }
+    .spec-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .spec-label {
+      color: var(--color-bronze);
+      font-weight: 600;
+    }
+    .spec-value {
+      color: var(--color-gold-light);
+      text-align: right;
+    }
+
+    /* Photogrammetry metrics box */
+    .tech-box {
+      background: rgba(212, 175, 55, 0.05);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+    .tech-box h4 {
+      font-size: 1rem;
+      color: var(--color-gold-light);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+    .tech-item span {
+      display: block;
+      color: var(--color-text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+    .tech-item strong {
+      color: var(--color-text-primary);
+    }
+
+    /* Multi-angle Photo Gallery */
+    .photo-gallery-section {
+      margin: 40px 0;
+    }
+    .photo-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .photo-gallery-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      border: 1px solid var(--color-border-subtle);
+      cursor: pointer;
+      background: #14100c;
+    }
+    .photo-gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-normal);
+    }
+    .photo-gallery-card:hover img {
+      transform: scale(1.08);
+    }
+    .photo-gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 16, 14, 0.65);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      color: var(--color-gold-light);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+    .photo-gallery-card:hover .photo-gallery-overlay {
+      opacity: 1;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-normal);
+    }
+    .lightbox-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 85vh;
+      text-align: center;
+    }
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-bright);
+      box-shadow: var(--shadow-lg);
+    }
+    .lightbox-caption {
+      margin-top: 14px;
+      color: var(--color-gold-light);
+      font-size: 1.1rem;
+      font-family: var(--font-serif);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* References */
+    .references-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: var(--color-text-secondary);
+    }
+
+    @media (max-width: 1024px) {
+      .detail-main-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-emblem">🏛️</div>
+        <div class="brand-text">
+          <h1>BẢO TÀNG SỐ 3D</h1>
+          <p>Di Sản Văn Hóa &amp; Photogrammetry</p>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Trang Chủ</a></li>
+        <li><a href="gallery.html" class="nav-link">Thư Viện Hiện Vật</a></li>
+        <li><a href="guide.html" class="nav-link">Quy Trình &amp; Chụp Ảnh</a></li>
+        <li><a href="detail.html?id=trong-dong-dong-son" class="nav-link active">Không Gian 3D</a></li>
+        <li class="mobile-admin-btn">
+          <a href="admin.html" class="btn btn-nav-admin">⚙️ Quản Trị Hiện Vật</a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="admin.html" class="btn-nav-admin">
+          <span>⚙️ Quản Trị</span>
+        </a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Breadcrumb -->
+    <div class="detail-header-nav">
+      <a href="index.html">Trang Chủ</a> / 
+      <a href="gallery.html">Thư Viện Hiện Vật</a> / 
+      <span id="artifact-title-breadcrumb" style="color: var(--color-gold-light);">Đang tải...</span>
+    </div>
+
+    <!-- Main Layout: 3D Interactive Exhibition Space & Information Panel -->
+    <div class="detail-main-layout">
+      
+      <!-- LEFT: 3D INTERACTIVE VIEWER -->
+      <div class="viewer-column">
+        <div class="viewer-wrapper" id="viewer-wrapper">
+          
+          <!-- Native Google Model-Viewer -->
+          <model-viewer 
+            id="main-model-viewer"
+            src="" 
+            poster=""
+            alt="Mô hình 3D hiện vật"
+            camera-controls 
+            auto-rotate 
+            rotation-per-second="20deg"
+            shadow-intensity="1.5"
+            exposure="1.1"
+            touch-action="pan-y"
+            camera-orbit="0deg 75deg 105%"
+            field-of-view="auto"
+            ar
+            ar-modes="webxr scene-viewer quick-look">
+          </model-viewer>
+
+          <!-- Standalone Three.js Canvas Container (Fallback / Advanced inspection) -->
+          <div id="three-canvas-container"></div>
+
+          <!-- Top HUD Display -->
+          <div class="viewer-hud-top">
+            <div class="viewer-hud-badge">
+              <span id="hud-artifact-title" class="viewer-hud-title">Tên Hiện Vật</span>
+              <span id="hud-artifact-meta" class="viewer-hud-meta">Đang tải dữ liệu 3D...</span>
+            </div>
+
+            <!-- View Mode Switcher -->
+            <div class="mode-pill-group">
+              <button class="mode-pill active" data-mode="texture" title="Kết cấu màu sắc gốc">Chân Thực</button>
+              <button class="mode-pill" data-mode="wireframe" title="Xem khung lưới đa giác">Lưới (Wireframe)</button>
+              <button class="mode-pill" data-mode="clay" title="Chất liệu thạch cao đơn sắc">Khối (Clay)</button>
+              <button class="mode-pill" data-mode="xray" title="Chế độ xuyên thấu tia X">X-Ray</button>
+            </div>
+
+            <div class="viewer-hud-tools">
+              <button id="btn-fullscreen" class="hud-btn" title="Toàn màn hình (Fullscreen)">⛶</button>
+              <button id="btn-snapshot" class="hud-btn" title="Chụp ảnh mô hình 3D (PNG)">📷</button>
+            </div>
+          </div>
+
+          <!-- Bottom Interactive Floating Toolbar -->
+          <div class="viewer-toolbar-bottom">
+            <button id="btn-auto-rotate" class="toolbar-btn active" title="Bật/Tắt xoay tự động">
+              <span>🔄</span> <span>Tự Xoay</span>
+            </button>
+            
+            <button id="btn-reset-view" class="toolbar-btn" title="Đặt lại góc nhìn mặc định">
+              <span>🎯</span> <span>Đặt Lại</span>
+            </button>
+
+            <div class="toolbar-divider"></div>
+
+            <div class="toolbar-group">
+              <button id="btn-zoom-in" class="toolbar-btn" title="Phóng to">🔍 +</button>
+              <button id="btn-zoom-out" class="toolbar-btn" title="Thu nhỏ">🔍 -</button>
+            </div>
+
+            <div class="toolbar-divider"></div>
+
+            <!-- Lighting Presets -->
+            <div class="toolbar-group">
+              <button class="toolbar-btn btn-light-preset active" data-preset="museum" data-name="Bảo tàng ấm" title="Ánh sáng bảo tàng vàng ấm">🏛️</button>
+              <button class="toolbar-btn btn-light-preset" data-preset="studio" data-name="Studio trắng" title="Ánh sáng studio cân bằng">💡</button>
+              <button class="toolbar-btn btn-light-preset" data-preset="sunset" data-name="Hoàng hôn" title="Ánh sáng hoàng hôn">🌅</button>
+            </div>
+          </div>
+
+          <!-- Loading Progress Overlay -->
+          <div id="viewer-loading" class="viewer-loading-overlay">
+            <div class="viewer-loading-spinner"></div>
+            <div class="viewer-loading-text">Đang Nạp Mô Hình 3D Photogrammetry...</div>
+            <div class="viewer-loading-bar">
+              <div id="loading-bar-fill" class="viewer-loading-bar-fill"></div>
+            </div>
+          </div>
+
+          <!-- Gesture interaction guide hint -->
+          <div class="viewer-gesture-hint">
+            <span>🖱️ Giữ chuột trái để xoay 360° • Cuộn chuột để phóng to/thu nhỏ</span>
+          </div>
+
+        </div>
+
+        <!-- Photogrammetry Technical Box -->
+        <div class="tech-box" style="margin-top: 24px;">
+          <h4>⚙️ Dữ Liệu Tái Tạo Photogrammetry Chuẩn Khảo Cổ Học</h4>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <span>Số lượng ảnh chụp</span>
+              <strong id="tech-photos">—</strong>
+            </div>
+            <div class="tech-item">
+              <span>Độ chồng lấp (Overlap)</span>
+              <strong id="tech-overlap">—</strong>
+            </div>
+            <div class="tech-item">
+              <span>Thiết bị ghi hình</span>
+              <strong id="tech-camera">—</strong>
+            </div>
+            <div class="tech-item">
+              <span>Phần mềm tái tạo 3D</span>
+              <strong id="tech-software">—</strong>
+            </div>
+            <div class="tech-item">
+              <span>Độ phân giải lưới đa giác</span>
+              <strong id="tech-poly">—</strong>
+            </div>
+            <div class="tech-item">
+              <span>Bản đồ kết cấu bề mặt</span>
+              <strong id="tech-texture">—</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: ARTIFACT HISTORICAL & CULTURAL DOSSIER -->
+      <div class="info-column">
+        <div class="detail-info-panel">
+          
+          <div>
+            <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+              <span id="artifact-category-badge" class="badge badge-gold">Phân loại</span>
+              <span id="artifact-heritage-badge" class="badge badge-national">Bảo vật Quốc gia</span>
+            </div>
+            <h1 id="artifact-title" style="font-size: 2.1rem; margin-bottom: 8px;">Đang nạp...</h1>
+            <p id="artifact-period" style="color: var(--color-bronze); font-size: 1.05rem; font-weight: 600;">Thời kỳ</p>
+          </div>
+
+          <!-- Physical Specifications -->
+          <div>
+            <h3 style="font-size: 1.15rem; margin-bottom: 12px; color: var(--color-gold-light);">Thông Số Hiện Vật</h3>
+            <div class="specs-grid">
+              <div class="spec-row">
+                <span class="spec-label">Chất liệu:</span>
+                <span id="meta-material" class="spec-value">—</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Kích thước:</span>
+                <span id="meta-dimensions" class="spec-value">—</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-label">Nơi lưu giữ:</span>
+                <span id="meta-location" class="spec-value">—</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Historical Description -->
+          <div>
+            <h3 style="font-size: 1.15rem; margin-bottom: 10px; color: var(--color-gold-light);">Mô Tả Hiện Vật</h3>
+            <p id="desc-content" style="color: var(--color-text-secondary); line-height: 1.7; font-size: 0.95rem;">
+              Đang tải nội dung...
+            </p>
+          </div>
+
+          <!-- Cultural Significance -->
+          <div>
+            <h3 style="font-size: 1.15rem; margin-bottom: 10px; color: var(--color-gold-light);">Ý Nghĩa Lịch Sử &amp; Văn Hóa</h3>
+            <p id="significance-content" style="color: var(--color-text-secondary); line-height: 1.7; font-size: 0.95rem;">
+              Đang tải nội dung...
+            </p>
+          </div>
+
+          <!-- References -->
+          <div class="references-box">
+            <h3 style="font-size: 1.1rem; color: var(--color-gold-light);">Nguồn Tư Liệu Tham Khảo</h3>
+            <ul id="references-list">
+              <!-- Filled via JS -->
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Multi-Angle Photography Set Section -->
+    <section class="photo-gallery-section">
+      <div class="section-header" style="text-align: left; margin-bottom: 24px;">
+        <div class="section-subtitle" style="justify-content: flex-start;">Ảnh Gốc Hiện Trường</div>
+        <h2 style="font-size: 1.8rem;">Bộ Ảnh Chụp Thực Tế Phục Vụ Tái Tạo 3D</h2>
+        <p style="color: var(--color-text-secondary); font-size: 0.95rem;">
+          Nhấn vào ảnh để xem chi tiết độ phân giải cao và góc độ chụp thực tế:
+        </p>
+      </div>
+
+      <div id="photo-gallery-grid" class="photo-gallery-grid">
+        <!-- Loaded dynamically via detail.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>🏛️ BẢO TÀNG SỐ DI SẢN 3D</h2>
+          <p>Dự án số hóa hiện vật văn hóa bằng công nghệ Photogrammetry và WebGL.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Trang Chính</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Trang Chủ</a></li>
+            <li><a href="gallery.html">Thư Viện Hiện Vật</a></li>
+            <li><a href="guide.html">Quy Trình &amp; Chụp Ảnh</a></li>
+            <li><a href="admin.html">Trang Quản Trị</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Điều Khiển 3D</h3>
+          <ul class="footer-links">
+            <li><span>Xoay: Kéo chuột trái</span></li>
+            <li><span>Zoom: Cuộn chuột</span></li>
+            <li><span>Dịch chuyển: Chuột phải</span></li>
+            <li><span>Điểm khảo cổ: Nhấn ghim vàng</span></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Hệ Thống</h3>
+          <p style="font-size: 0.88rem; color: var(--color-text-secondary); margin-bottom: 12px;">
+            Quản lý và tải lên tệp 3D GLB hiện vật mới.
+          </p>
+          <a href="admin.html" class="btn btn-primary btn-sm" style="width: 100%;">Trang Quản Trị</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Bảo Tàng Số 3D Hiện Vật Văn Hóa. Tái tạo bằng công nghệ Photogrammetry.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/three-fallback.js"></script>
+  <script src="js/detail.js"></script>
+</body>
+</html>
+
